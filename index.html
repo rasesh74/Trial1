@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Har Gali - Hyperlocal Business Model Pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & THEME --- */
+        :root {
+            --primary: #0a192f;       /* Deep Navy Blue */
+            --secondary: #facc15;     /* Vibrant Yellow */
+            --text-dark: #1e293b;     /* Charcoal for main text */
+            --text-light: #f8fafc;    /* Light text for dark backgrounds */
+            --bg-light: #f8fafc;       /* Light gray section background */
+            --bg-white: #ffffff;
+            --accent-blue: #1e3a8a;
+            --shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* --- BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 15px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- UTILITY CSS ICONS --- */
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary);
+            opacity: 1;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-light);
+            border-radius: 2px;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #0f2b5c 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            padding-top: 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            background-color: rgba(250, 204, 21, 0.2);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        #hero h1 span {
+            color: var(--secondary);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 15px 35px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(250, 204, 21, 0.5);
+        }
+
+        /* --- PROBLEM SECTION --- */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .problem-card {
+            background-color: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border-top: 4px solid #ef4444; /* Red accent for problems */
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .problem-card .icon {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        /* --- SOLUTION SECTION --- */
+        #solution {
+            background-color: var(--bg-light);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .solution-card {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .solution-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* --- HOW IT WORKS --- */
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .step-num {
+            background: var(--primary);
+            color: var(--secondary);
+            font-size: 1.8rem;
+            font-weight: 800;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        /* --- BUSINESS MODEL --- */
+        #business-model {
+            background: linear-gradient(135deg, #0f2b5c 0%, var(--primary) 100%);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        #business-model .section-title {
+            color: var(--text-light);
+        }
+
+        .bm-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            padding: 50px 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .bm-highlight {
+            font-size: 2rem;
+            color: var(--secondary);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .bm-desc {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* --- REVENUE MODEL --- */
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .revenue-card {
+            background: var(--bg-white);
+            border: 2px solid var(--bg-light);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .revenue-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .revenue-card.future {
+            background: linear-gradient(180deg, var(--bg-white) 0%, #fefce8 100%);
+            border: 2px dashed var(--secondary);
+        }
+
+        .revenue-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* --- WHY HAR GALI --- */
+        #why-us {
+            background-color: var(--bg-light);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .why-card {
+            background: var(--bg-white);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .why-card .icon {
+            margin: 0 auto 20px auto;
+        }
+
+        .why-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        /* --- FUTURE VISION --- */
+        .vision-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .vision-box {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .vision-box h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .vision-box h3 span {
+            color: var(--secondary);
+        }
+
+        /* --- FOUNDER SECTION --- */
+        #founder {
+            background: linear-gradient(135deg, var(--primary) 0%, #050c18 100%);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        #founder .section-title {
+            color: var(--text-light);
+        }
+
+        .founder-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 50px 30px;
+            border-radius: 20px;
+        }
+
+        .founder-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--secondary);
+            border-radius: 50%;
+            margin: 0 auto 25px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .founder-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .founder-title {
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .founder-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #050c18;
+            color: #64748b;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+
+        /* --- ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE DESIGN (MOBILE ROUTINES) --- */
+        @media (max-width: 1024px) {
+            .problem-grid, .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.8rem;
+            }
+            .tagline {
+                font-size: 1.2rem;
+            }
+            .problem-grid, .solution-grid, .revenue-grid, .why-grid, .vision-container {
+                grid-template-columns: 1fr;
+            }
+            .solution-card {
+                flex-direction: column;
+            }
+            .step-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .nav-menu {
+                position: absolute;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                gap: 30px;
+                transition: var(--transition);
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-link {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#hero" class="logo">Har <span>Gali</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#problem" class="nav-link">Problem</a></li>
+                <li><a href="#solution" class="nav-link">Solution</a></li>
+                <li><a href="#how-it-works" class="nav-link">How it Works</a></li>
+                <li><a href="#revenue" class="nav-link">Revenue Model</a></li>
+                <li><a href="#why-us" class="nav-link">Advantages</a></li>
+                <li><a href="#founder" class="nav-link">Founder</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <span class="badge">Hyperlocal Business Pitch</span>
+            <h1>Faster Than <span>Quick Commerce</span></h1>
+            <p class="tagline">"Har Gali, Har Dukaan – Fast Delivery Powered by Local Shops"</p>
+            <p class="hero-desc">
+                An innovative ecosystem that converts local micro-retailers into hyper-speed fulfillment hubs, discarding dark stores to deliver items faster while empowering traditional commerce.
+            </p>
+            <a href="#problem" class="cta-btn">Explore Business Model</a>
+        </div>
+    </section>
+
+    <section id="problem" class="reveal">
+        <div class="container">
+            <h2 class="section-title">The Market Deficit</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">!</div>
+                    <h3>Dying Margins</h3>
+                    <p>Traditional local shopkeepers are facing major margin compression due to legacy distributor setups and heavy wholesale fragmentation.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">!</div>
+                    <h3>Zero Digital Footprint</h3>
+                    <p>Small community retailers lack affordable infrastructure to showcase real-time inventory online, shutting them out from digital demand.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">!</div>
+                    <h3>Warehouse Latency</h3>
+                    <p>Quick-commerce giants rely on centralized dark stores. They face travel bottlenecks that local street shops can bypass instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution" class="reveal">
+        <div class="container">
+            <h2 class="section-title">The Har Gali Paradigm</h2>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="icon">✓</div>
+                    <div>
+                        <h3>Hyperlocal Distribution Engine</h3>
+                        <p>We hook directly into matching proximity shops. Customers route orders straight to the nearest alleyway shop keeper for ultra-fast handoff.</p>
+                    </div>
+                </div>
+                <div class="solution-card">
+                    <div class="icon">✓</div>
+                    <div>
+                        <h3>Instant Inventory Liquidity</h3>
+                        <p>Proprietary light tech registers live offline items without tedious data-entry barriers, instantly unlocking access for digital buyers.</p>
+                    </div>
+                </div>
+                <div class="solution-card">
+                    <div class="icon">✓</div>
+                    <div>
+                        <h3>Aggregated Direct Sourcing</h3>
+                        <p>We work as a high-volume direct business-to-business partner, delivering supplies at deeper price points than regular intermediaries can match.</p>
+                    </div>
+                </div>
+                <div class="solution-card">
+                    <div class="icon">✓</div>
+                    <div>
+                        <h3>0% Commission Model</h3>
+                        <p>We do not collect commissions on local digital store transactions, building instant network trust and fast platform adoption.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="reveal">
+        <div class="container">
+            <h2 class="section-title">The Operational Loop</h2>
+            <div class="step-container">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h3>Shop Onboarding</h3>
+                        <p>Neighborhood retailers join the Har Gali operational grid without payment obstacles or steep software setup fees.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h3>Inventory Digitization</h3>
+                        <p>Local store shelves are systematically indexed onto our platform using dynamic, cloud-based catalog features.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h3>Bulk Procurement Injection</h3>
+                        <p>Har Gali fulfills shop supply lines directly, stocking their physical shelves with higher-margin inventory options.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h3>Smart Proximity Purchase</h3>
+                        <p>A neighborhood buyer places an order; our platform pairs it with the micro-retailer located closest to them.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <h3>Hyper-Speed Delivery</h3>
+                        <p>Because the inventory is already in the exact neighborhood, fulfillment avoids gridlock and reaches buyers faster than dark stores.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="business-model" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Core Business Strategy</h2>
+            <div class="bm-container">
+                <div class="bm-highlight">No Commission. Absolute Trust.</div>
+                <p class="bm-desc">
+                    By taking 0% commission on orders from neighborhood retailers, Har Gali changes the dynamic from a vendor model to a true partnership. We make money alongside our local retailers instead of cutting into their thin margins.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="revenue" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Unit Economics & Revenue Streams</h2>
+            <div class="revenue-grid">
+                <div class="revenue-card">
+                    <div class="icon">₹</div>
+                    <h3>1. Bulk Wholesale Arbitrage</h3>
+                    <p>We source consumer items directly from manufacturers in massive volume. By bypassing traditional distributor tiers, we capture high gross margins while passing better prices to retail partners.</p>
+                </div>
+                <div class="revenue-card">
+                    <div class="icon">📦</div>
+                    <h3>2. Proximity Micro-Fees</h3>
+                    <p>A minor, fixed service fee ranging from ₹10 to ₹40 is applied to transactions. This covers the underlying delivery infrastructure without altering the core price of goods.</p>
+                </div>
+                <div class="revenue-card">
+                    <div class="icon">📈</div>
+                    <h3>3. Hyperlocal In-App Ad Engine</h3>
+                    <p>Participating stores can deploy localized ad campaigns to boost visibility for high-yield inventory directly to buyers checking the app nearby.</p>
+                </div>
+                <div class="revenue-card future">
+                    <div class="icon">🚀</div>
+                    <h3>4. Premium Feature Layer (Future)</h3>
+                    <p>Value-added upgrades, including predictive local stock planning, predictive inventory tooling, and custom premium visibility algorithms for growing retailers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Why Har Gali Scales</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="icon">⚡</div>
+                    <h3>Zero Real Estate Friction</h3>
+                    <p>No expensive city dark stores or fulfillment hubs. Every alley shop operates as an active micro-center.</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon">⏱</div>
+                    <h3>Unmatched Delivery Speeds</h3>
+                    <p>Leverages immediate geographic proximity to beat industrial logistics fulfillment times.</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon">📊</div>
+                    <h3>Strong Vendor Retainers</h3>
+                    <p>Providing better operational margins creates long-term partner lock-in.</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon">🤝</div>
+                    <h3>Community-First Scale</h3>
+                    <p>Keeps capital working inside the local neighborhood ecosystem, building deep community support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision" class="reveal">
+        <div class="container">
+            <h2 class="section-title">The Roadmap Ahead</h2>
+            <div class="vision-container">
+                <div class="vision-box">
+                    <h3>Pan-India <span>Network</span></h3>
+                    <p>Expanding across Tier-1, Tier-2, and Tier-3 urban zones to secure market share across diversified consumer locations.</p>
+                </div>
+                <div class="vision-box">
+                    <h3>Largest Local <span>Grid</span></h3>
+                    <p>Connecting thousands of independent retail stores into a unified, lightning-fast logistics and distribution network.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="founder" class="reveal">
+        <div class="container">
+            <h2 class="section-title">The Architect</h2>
+            <div class="founder-card">
+                <div class="founder-avatar">RA</div>
+                <div class="founder-name">Rasesh Agrawal</div>
+                <div class="founder-title">Founder & Chief Strategist</div>
+                <p class="founder-quote">
+                    "Concept and Business Model created by Rasesh Agrawal. Har Gali is designed to rewrite modern fast-delivery logistics by giving traditional street-side retailers the infrastructure to outpace deep-pocketed dark stores."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Har Gali | Concept and Business Model created by Rasesh Agrawal</p>
+        </div>
+    </footer>
+
+    <script>
+        // Responsive Navigation Controller
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close menu panel when clicking item links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Scroll Reveal Controller for presentation elements
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            const revealPoint = 150;
+
+            reveals.forEach(element => {
+                const revealTop = element.getBoundingClientRect().top;
+                if (revealTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Fire once on load to catch sections visible immediately above fold
+        window.addEventListener('load', revealOnScroll);
+    </script>
+</body>
+</html>
